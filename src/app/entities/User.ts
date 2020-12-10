@@ -7,9 +7,12 @@ import {
   BeforeUpdate,
   OneToMany,
   Entity,
+  ManyToMany,
+  JoinTable,
 } from 'typeorm';
 import bcrypt from 'bcrypt';
 import Env from '../../env';
+import { Game } from './Game';
 import { Review } from './Review';
 
 @Entity('user')
@@ -34,6 +37,22 @@ export class User extends BaseEntity {
 
   @Column({ default: false })
   admin: boolean;
+
+  @ManyToMany(type => Game)
+  @JoinTable({
+    name: 'user_wish_game',
+    joinColumn: { name: 'id_user' },
+    inverseJoinColumn: { name: 'id_game' },
+  })
+  wishlist: Game[];
+
+  @ManyToMany(type => Game)
+  @JoinTable({
+    name: 'user_played_game',
+    joinColumn: { name: 'id_user' },
+    inverseJoinColumn: { name: 'id_game' },
+  })
+  playedList: Game[];
 
   @OneToMany(type => Review, review => review.game)
   reviews: Review[];
