@@ -1,3 +1,7 @@
+tmp/*
+!tmp/.gitkeep
+!tmp/default-user.jpg
+
 # Logs
 logs
 *.log
