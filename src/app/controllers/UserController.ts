@@ -24,6 +24,10 @@ class UserController {
   async remove(request: Request, response: Response): Promise<Response> {
     return response;
   }
+
+  async changeAdmin(request: Request, response: Response): Promise<Response> {
+    return response;
+  }
 }
 
 export default new UserController();

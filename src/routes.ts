@@ -1,8 +1,17 @@
 import { resolve } from 'path';
 import express, { Router } from 'express';
+
+import {
+  SessionController,
+  UserController,
+  GameController,
+  PublisherController,
+  WishlistController,
+  GameDoneController,
+  ReviewController,
+} from './app/controllers';
 import Upload from './lib/Upload';
 import { Authentication, Pagination } from './app/middlewares';
-import { SessionController, UserController, GameController, PublisherController, WishlistController, GameDoneController, ReviewController } from './app/controllers';
 
 const router = Router();
 
@@ -12,20 +21,25 @@ const router = Router();
 router.use('/files', express.static(resolve(__dirname, '..', 'tmp')));
 
 /**
- * Session Routes
+ * Open Routes
  */
 router.post('/login', SessionController.store);
+router.post('/users', Upload.single('image'), UserController.store);
+
+/**
+ * Authenticated Routes
+ */
 router.use(Authentication);
-router.post('/logout', Authentication, SessionController.remove);
+router.post('/logout', SessionController.remove);
 
 /**
  * User Routes
  */
 router.get('/users', Pagination, UserController.index);
-router.post('/users', Upload.single('image'), UserController.store);
 router.get('/users/:id_user', UserController.show);
 router.put('/users/:id_user', UserController.update);
 router.delete('/users/:id_user', UserController.remove);
+router.patch('/users/:id_user/admin', UserController.changeAdmin);
 
 /**
  * Game Routes
@@ -47,18 +61,18 @@ router.get('/publishers', PublisherController.index);
 router.get('/genres', PublisherController.index);
 
 /**
- * Wishlist Routes
+ * Wish Game Routes
  */
-router.get('/users/:id_user/wishlist', WishlistController.index);
-router.post('/users/:id_user/wishlist', WishlistController.store);
-router.delete('/users/:id_user/wishlist/:id_game', WishlistController.remove);
+router.get('/users/:id_user/wish', WishlistController.index);
+router.post('/users/:id_user/wish', WishlistController.store);
+router.delete('/users/:id_user/wish/:id_game', WishlistController.remove);
 
 /**
- * Game Done Routes
+ * Played Game Routes
  */
-router.get('/users/:id_user/gamedone', GameDoneController.index);
-router.post('/users/:id_user/gamedone', GameDoneController.store);
-router.delete('/users/:id_user/gamedone/:id_game', GameDoneController.remove);
+router.get('/users/:id_user/played', GameDoneController.index);
+router.post('/users/:id_user/played', GameDoneController.store);
+router.delete('/users/:id_user/played/:id_game', GameDoneController.remove);
 
 /**
  * Review Routes
