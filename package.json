@@ -11,7 +11,7 @@
     "prebuild": "rm -r -f dist",
     "build": "./node_modules/typescript/bin/tsc",
     "postbuild": "cp -r src/public dist",
-    "dev": "ts-node-dev --respawn --transpileOnly src/server.ts",
+    "dev": "ts-node-dev --respawn src/server.ts",
     "prestart": "npm run db:migrate > /dev/null",
     "start": "node dist/server.js",
     "pretest": "rm -r -f tests/.tmp && NODE_ENV=test npm run db:migrate > /dev/null",
