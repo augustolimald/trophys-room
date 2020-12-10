@@ -1,0 +1,900 @@
+---
+openapi: 3.0.0
+info:
+  title: Trophys Room
+  description: Catálogo de games
+  contact:
+    email: augusto.lima@estudante.ufla.br
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.0
+servers:
+- url: https://virtserver.swaggerhub.com/Augusto9/trophys-room/1.0.0
+  description: SwaggerHub API Auto Mocking
+- url: http://teste.com
+  description: Testing server
+tags:
+- name: Autenticação
+  description: Operações para controle de sessão
+- name: Usuários
+  description: Operações sobre usuários
+- name: Games
+  description: Operações sobre jogos
+- name: Lista de Desejos
+  description: Jogos do interesse do Usuário
+- name: Jogados
+  description: Jogos jogados pelo Usuário
+paths:
+  /login:
+    post:
+      tags:
+      - Autenticação
+      summary: Realiza login no sistema
+      description: Retorna um token de acesso
+      operationId: login
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/body'
+      responses:
+        "200":
+          description: Retorna dados do usuário e token
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200'
+        "400":
+          description: Informe os dados corretamente
+        "404":
+          description: Entidade não encontrada
+  /logout:
+    post:
+      tags:
+      - Autenticação
+      summary: Realiza logout no sistema
+      description: Apaga o token de acesso
+      operationId: logout
+      responses:
+        "204":
+          description: Realiza logout com sucesso
+        "400":
+          description: Informe os dados corretamente
+        "401":
+          description: Informe um token válido
+      security:
+      - bearerAuth: []
+  /users:
+    get:
+      tags:
+      - Usuários
+      summary: Lista usuários do sistema
+      description: Somente administradores podem fazer isso
+      operationId: listUsers
+      responses:
+        "200":
+          description: Lista os usuários
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+        "401":
+          description: Informe um token válido
+        "403":
+          description: Usuário não possui permissão para isso
+      security:
+      - bearerAuth: []
+    post:
+      tags:
+      - Usuários
+      summary: Cadastra um usuário no sistema
+      operationId: createUser
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/body_1'
+      responses:
+        "201":
+          description: Cria o usuário corretamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        "400":
+          description: Informe os dados corretamente
+        "409":
+          description: Entidade já cadastrada
+  /users/{id_user}:
+    get:
+      tags:
+      - Usuários
+      summary: Lista um usuário do sistema
+      description: Somente administradores ou o usuário dono do id podem fazer isso
+      operationId: listUser
+      parameters:
+      - name: id_user
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: Lista os usuários
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        "401":
+          description: Informe um token válido
+        "403":
+          description: Usuário não possui permissão para isso
+        "404":
+          description: Entidade não encontrada
+      security:
+      - bearerAuth: []
+    put:
+      tags:
+      - Usuários
+      summary: Atualiza um usuário do sistema
+      description: Somente administradores ou o usuário dono do id podem fazer isso
+      operationId: updateUser
+      parameters:
+      - name: id_user
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      requestBody:
+        content:
+          aplication/json:
+            schema:
+              $ref: '#/components/schemas/body_2'
+      responses:
+        "200":
+          description: Lista os usuários
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        "401":
+          description: Informe um token válido
+        "403":
+          description: Usuário não possui permissão para isso
+        "404":
+          description: Entidade não encontrada
+      security:
+      - bearerAuth: []
+    delete:
+      tags:
+      - Usuários
+      summary: Remove um usuário do sistema
+      description: Somente administradores ou o usuário dono do id podem fazer isso
+      operationId: removeUser
+      parameters:
+      - name: id_user
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      responses:
+        "204":
+          description: Remove com sucesso
+        "401":
+          description: Informe um token válido
+        "403":
+          description: Usuário não possui permissão para isso
+        "404":
+          description: Entidade não encontrada
+      security:
+      - bearerAuth: []
+  /users/{id_user}/admin:
+    patch:
+      tags:
+      - Usuários
+      summary: Muda a permissão do usuário no sistema
+      description: Somente administradores podem fazer isso
+      operationId: changeAdminAccessUser
+      parameters:
+      - name: id_user
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/body_3'
+      responses:
+        "204":
+          description: Altera a permissão
+        "401":
+          description: Informe um token válido
+        "403":
+          description: Usuário não possui permissão para isso
+        "404":
+          description: Entidade não encontrada
+      security:
+      - bearerAuth: []
+  /publishers:
+    get:
+      tags:
+      - Games
+      summary: Lista as publicadoras de jogos
+      operationId: listPublishers
+      responses:
+        "200":
+          description: Lista as publicadoras
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Publisher'
+        "401":
+          description: Informe um token válido
+      security:
+      - bearerAuth: []
+  /genres:
+    get:
+      tags:
+      - Games
+      summary: Lista os gêneros de jogos
+      operationId: listGenres
+      responses:
+        "200":
+          description: Lista os gêneros
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Genre'
+        "401":
+          description: Informe um token válido
+      security:
+      - bearerAuth: []
+  /games:
+    get:
+      tags:
+      - Games
+      summary: Lista os games do sistema
+      operationId: listGames
+      parameters:
+      - name: page
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: integer
+          example: 1
+      - name: amount
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: integer
+          example: 10
+      - name: id_genre
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: integer
+      - name: id_publisher
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: Lista os Games
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_1'
+        "401":
+          description: Informe um token válido
+      security:
+      - bearerAuth: []
+    post:
+      tags:
+      - Games
+      summary: Cadastra um game no sistema
+      description: Somente administradores podem fazer isso
+      operationId: createGame
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/body_4'
+      responses:
+        "201":
+          description: Cria o game corretamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Game'
+        "400":
+          description: Informe os dados corretamente
+        "401":
+          description: Informe um token válido
+        "403":
+          description: Usuário não possui permissão para isso
+        "404":
+          description: Entidade não encontrada
+        "409":
+          description: Entidade já cadastrada
+      security:
+      - bearerAuth: []
+  /games/{id_game}:
+    get:
+      tags:
+      - Games
+      summary: Lista um game do sistema
+      operationId: listGame
+      parameters:
+      - name: id_game
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: Lista o game
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Game'
+        "401":
+          description: Informe um token válido
+        "403":
+          description: Usuário não possui permissão para isso
+        "404":
+          description: Entidade não encontrada
+      security:
+      - bearerAuth: []
+    put:
+      tags:
+      - Games
+      summary: Atualiza um game do sistema
+      description: Somente administradores podem fazer isso
+      operationId: updateGame
+      parameters:
+      - name: id_game
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/body_5'
+      responses:
+        "200":
+          description: Retorna o game atualizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Game'
+        "400":
+          description: Informe os dados corretamente
+        "401":
+          description: Informe um token válido
+        "403":
+          description: Usuário não possui permissão para isso
+        "404":
+          description: Entidade não encontrada
+      security:
+      - bearerAuth: []
+    delete:
+      tags:
+      - Games
+      summary: Remove um game do sistema
+      description: Somente administradores podem fazer isso
+      operationId: removeGame
+      parameters:
+      - name: id_game
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      responses:
+        "204":
+          description: Remove com sucesso
+        "401":
+          description: Informe um token válido
+        "403":
+          description: Usuário não possui permissão para isso
+        "404":
+          description: Entidade não encontrada
+      security:
+      - bearerAuth: []
+  /users/{id_user}/wish:
+    get:
+      tags:
+      - Lista de Desejos
+      summary: Lista jogos da lista de desejos
+      operationId: listWishlist
+      parameters:
+      - name: id_user
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: Lista jogos
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Game'
+        "401":
+          description: Informe um token válido
+        "403":
+          description: Usuário não possui permissão para isso
+        "404":
+          description: Entidade não encontrada
+      security:
+      - bearerAuth: []
+    post:
+      tags:
+      - Lista de Desejos
+      summary: Adiciona jogo a lista de desejos
+      operationId: addToWishlist
+      parameters:
+      - name: id_user
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/body_6'
+      responses:
+        "204":
+          description: Adicionado com sucesso
+        "401":
+          description: Informe um token válido
+        "403":
+          description: Usuário não possui permissão para isso
+        "404":
+          description: Entidade não encontrada
+      security:
+      - bearerAuth: []
+  /users/{id_user}/wish/{id_game}:
+    delete:
+      tags:
+      - Lista de Desejos
+      summary: Remove jogo da lista de desejos
+      operationId: removeFromWishlist
+      parameters:
+      - name: id_user
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      - name: id_game
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      responses:
+        "204":
+          description: Removido com sucesso
+        "401":
+          description: Informe um token válido
+        "403":
+          description: Usuário não possui permissão para isso
+        "404":
+          description: Entidade não encontrada
+      security:
+      - bearerAuth: []
+  /users/{id_user}/played:
+    get:
+      tags:
+      - Jogados
+      summary: Lista os jogos jogados
+      operationId: listDone
+      parameters:
+      - name: id_user
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: Lista os jogos
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Game'
+        "401":
+          description: Informe um token válido
+        "403":
+          description: Usuário não possui permissão para isso
+        "404":
+          description: Entidade não encontrada
+      security:
+      - bearerAuth: []
+    post:
+      tags:
+      - Jogados
+      summary: Adiciona um jogo aos jogados
+      operationId: addToDone
+      parameters:
+      - name: id_user
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/body_7'
+      responses:
+        "204":
+          description: Adicionado com sucesso
+        "401":
+          description: Informe um token válido
+        "403":
+          description: Usuário não possui permissão para isso
+        "404":
+          description: Entidade não encontrada
+      security:
+      - bearerAuth: []
+  /users/{id_user}/played/{id_game}:
+    delete:
+      tags:
+      - Jogados
+      summary: Remove um jogo dos jogados
+      operationId: removeFromDone
+      parameters:
+      - name: id_user
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      - name: id_game
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      responses:
+        "204":
+          description: Removido com sucesso
+        "401":
+          description: Informe um token válido
+        "403":
+          description: Usuário não possui permissão para isso
+        "404":
+          description: Entidade não encontrada
+      security:
+      - bearerAuth: []
+  /games/{id_game}/review:
+    post:
+      tags:
+      - Jogados
+      summary: Avalia um jogo jogado
+      operationId: doReview
+      parameters:
+      - name: id_game
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/body_8'
+      responses:
+        "200":
+          $ref: '#/components/schemas/Review'
+        "401":
+          description: Informe um token válido
+        "403":
+          description: Usuário não possui permissão para isso
+        "404":
+          description: Entidade não encontrada
+      security:
+      - bearerAuth: []
+components:
+  schemas:
+    User:
+      required:
+      - admin
+      - email
+      - id
+      - name
+      - profile_picture
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        name:
+          type: string
+          example: Fulano da Silva
+        email:
+          type: string
+          example: fulano@mail.com
+        profile_picture:
+          type: string
+          example: http://url-para-imagem.com.br/1.png
+        admin:
+          type: boolean
+          example: false
+    Genre:
+      required:
+      - id
+      - name
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 2
+        name:
+          type: string
+          example: Ação/Aventura
+    Publisher:
+      required:
+      - id
+      - name
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 3
+        name:
+          type: string
+          example: Ubisoft
+    Game:
+      required:
+      - description
+      - genre
+      - id
+      - metacritic_score
+      - picture
+      - publisher
+      - release_date
+      - title
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 4
+        genre:
+          $ref: '#/components/schemas/Genre'
+        publisher:
+          $ref: '#/components/schemas/Publisher'
+        title:
+          type: string
+          example: Assassins Creed Valhalla
+        description:
+          type: string
+          example: O jogo é assim e assado
+        picture:
+          type: string
+          example: https://url-para-imagem.com/acv.png
+        metacritic_score:
+          type: number
+          example: 80
+        release_date:
+          type: string
+          example: 2020-11-20
+    Review:
+      required:
+      - game
+      - score
+      - user
+      type: object
+      properties:
+        user:
+          $ref: '#/components/schemas/User'
+        game:
+          $ref: '#/components/schemas/Game'
+        score:
+          type: number
+          example: 4
+        comment:
+          type: string
+          example: Bom, mas bugado
+    body:
+      type: object
+      properties:
+        email:
+          type: string
+          example: fulano@mail.com
+        password:
+          type: string
+          example: "1234"
+    inline_response_200:
+      type: object
+      properties:
+        user:
+          $ref: '#/components/schemas/User'
+        token:
+          type: string
+          format: jwt
+          example: eyJpc3MiOiJ0b3B0YWwuY29tIiwiZXhwIjoxNDI2NDIwODAwLCJodHRwOi8vdG9wdGFsLmNvbS9qd3RfY2xhaW1zL2lzX2FkbWluIjp0cnVlLCJjb21wYW55IjoiVG9wdGFsIiwiYXdlc29tZSI6dHJ1ZX0.
+    body_1:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Fulano da Silva
+        email:
+          type: string
+          example: fulano@mail.com
+        password:
+          type: string
+          example: "1234"
+        image:
+          type: string
+          format: binary
+    body_2:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Fulano da Silva
+        email:
+          type: string
+          example: fulano@mail.com
+        password:
+          type: string
+          example: "1234"
+    body_3:
+      type: object
+      properties:
+        admin:
+          type: boolean
+          example: true
+    inline_response_200_1:
+      type: object
+      properties:
+        games:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+        current_page:
+          type: integer
+          example: 1
+        total_pages:
+          type: integer
+          example: 3
+    body_4:
+      type: object
+      properties:
+        id_genre:
+          type: integer
+          example: 1
+        id_publisher:
+          type: integer
+          example: 5
+        title:
+          type: string
+          example: Assassins Creed Valhalla
+        description:
+          type: string
+          example: O jogo é assim e assado
+        picture:
+          type: string
+          example: https://url-para-imagem.com/acv.png
+        metacritic_score:
+          type: number
+          example: 80
+        release_date:
+          type: string
+          example: 2020-11-20
+    body_5:
+      type: object
+      properties:
+        id_genre:
+          type: integer
+          example: 1
+        id_publisher:
+          type: integer
+          example: 5
+        title:
+          type: string
+          example: Assassins Creed Valhalla
+        description:
+          type: string
+          example: O jogo é assim e assado
+        picture:
+          type: string
+          example: https://url-para-imagem.com/acv.png
+        metacritic_score:
+          type: number
+          example: 80
+        release_date:
+          type: string
+          example: 2020-11-20
+    body_6:
+      type: object
+      properties:
+        id_game:
+          type: number
+          example: 22
+    body_7:
+      type: object
+      properties:
+        id_game:
+          type: number
+          example: 22
+    body_8:
+      type: object
+      properties:
+        score:
+          type: number
+          example: 4
+        comment:
+          type: string
+          example: Gostei, mas bugado
+  responses:
+    BadInput:
+      description: Informe os dados corretamente
+    Unauthorized:
+      description: Informe um token válido
+    Forbidden:
+      description: Usuário não possui permissão para isso
+    NotFound:
+      description: Entidade não encontrada
+    Conflict:
+      description: Entidade já cadastrada
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
