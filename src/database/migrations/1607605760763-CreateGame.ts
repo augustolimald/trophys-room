@@ -78,7 +78,7 @@ export class CreateGame1607605760763 implements MigrationInterface {
 
           {
             name: 'description',
-            type: 'varchar(500)',
+            type: 'varchar(5000)',
             isNullable: true,
           },
 
