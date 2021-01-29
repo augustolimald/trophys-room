@@ -9,7 +9,7 @@ const connection =
       }
     : {
         type: 'postgres',
-        url: `${process.env.DATABASE_URL}?sslmode=require`,
+        url: process.env.DATABASE_URL},
       };
 
 const entities = [];
@@ -28,7 +28,7 @@ module.exports = {
 
   synchronize: false,
   logging: process.env.NODE_ENV === 'development',
-  migrationsTableName: 'Migrations',
+  migrationsTableName: 'migrations',
 
   entities,
   migrations,
