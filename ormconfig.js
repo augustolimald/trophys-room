@@ -9,7 +9,7 @@ const connection =
       }
     : {
         type: 'postgres',
-        url: `${process.env.DATABASE_URL}?ssl=true`,
+        url: `${process.env.DATABASE_URL}?sslmode=require`,
       };
 
 const entities = [];
