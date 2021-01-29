@@ -9,6 +9,7 @@ import {
   WishlistController,
   GameDoneController,
   ReviewController,
+  GenreController,
 } from './app/controllers';
 import Upload from './lib/Upload';
 import { Authentication, Pagination } from './app/middlewares';
@@ -58,7 +59,7 @@ router.get('/publishers', PublisherController.index);
 /**
  * Genre Routes
  */
-router.get('/genres', PublisherController.index);
+router.get('/genres', GenreController.index);
 
 /**
  * Wish Game Routes
@@ -77,6 +78,6 @@ router.delete('/users/:id_user/played/:id_game', GameDoneController.remove);
 /**
  * Review Routes
  */
-router.get('/games/:id_game/review', ReviewController.store);
+router.post('/games/:id_game/review', ReviewController.store);
 
 export default router;

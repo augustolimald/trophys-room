@@ -23,4 +23,16 @@ export class Review extends BaseEntity {
 
   @Column()
   comment: string;
+
+  public filterFields(): any {
+    return {
+      user: {
+        id: this.user.id,
+        name: this.user.name,
+      },
+      game: this.game,
+      score: this.score,
+      comment: this.comment,
+    };
+  }
 }

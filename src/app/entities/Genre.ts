@@ -9,6 +9,6 @@ export class Genre extends BaseEntity {
   @Column()
   name: string;
 
-  @OneToMany(type => Game, game => game.publisher)
+  @OneToMany(type => Game, game => game.genre)
   games: Game[];
 }

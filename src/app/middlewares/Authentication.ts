@@ -31,7 +31,11 @@ export default async function (
   /**
    * Search User
    */
-  const user = await User.findOne({ where: { id: decoded.id, token } });
+  const user = await User.findOne({
+    where: { id: decoded.id, token },
+    relations: ['wishlist', 'playedList'],
+  });
+
   if (!user) {
     return response.status(404).json({ error: 'Usuário não encontrado' });
   }

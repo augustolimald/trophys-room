@@ -1,8 +1,10 @@
 import { Request, Response } from 'express';
+import { Genre } from '../entities';
 
 class GenreController {
   async index(request: Request, response: Response): Promise<Response> {
-    return response;
+    const genres = await Genre.find();
+    return response.status(200).json(genres);
   }
 }
 

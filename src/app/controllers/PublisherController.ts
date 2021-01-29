@@ -1,8 +1,10 @@
 import { Request, Response } from 'express';
+import { Publisher } from '../entities';
 
 class PublisherController {
   async index(request: Request, response: Response): Promise<Response> {
-    return response;
+    const publishers = await Publisher.find();
+    return response.status(200).json(publishers);
   }
 }
 
