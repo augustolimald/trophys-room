@@ -28,7 +28,11 @@ module.exports = {
 
   synchronize: false,
   logging: process.env.NODE_ENV === 'development',
-  migrationsTableName: 'Migrations',
+  migrationsTableName: 'migrations',
+  
+  ssl: {
+    rejectUnauthorized: false
+  },
 
   entities,
   migrations,
