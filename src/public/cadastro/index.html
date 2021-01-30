@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link href="../bootstrap/css/bootstrap.css" rel="stylesheet">
+  <link rel="stylesheet" href="./index.css">  
+  <script src="./index.js"></script>
+  
+  <title>Cadastro</title>
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div><h3>Cadastro</h3></div>
+                <br>
+                <div>
+                    <div class="form-group">
+                      <label for="inputName">Nome</label>
+                      <input type="text" class="form-control" id="inputName" placeholder="Digite seu Nome">
+                    </div>
+                    <div class="form-group">
+                        <label for="inputEmail">Email</label>
+                        <input type="email" class="form-control" id="inputEmail" placeholder="Digite seu Email">
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword">Senha</label>
+                        <input type="password" class="form-control" id="inputPassword" placeholder="Digite sua Senha">
+                    </div>
+                    <div class="form-group">
+                      <label for="inputPicture">Avatar</label>
+                      <div class="custom-file">
+                        <input onChange="changePic()" type="file" class="custom-file-input" id="inputFile" accept="image/*">                         
+                      </div>
+                  </div>
+                    <br>
+                    <div id="btn">
+                      <button onClick="cadastrar()" class="btn btn-primary">Cadastrar</button>
+                    </div>
+                </div>
+          </div>
+      </div>
+  </div>
+
+  <!-- BOOTSTRAP --> 
+	<script src="../bootstrap/js/bootstrap.bundle.js"></script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+body {
+  margin: 0;
+  background-image: url('./assets/login-background.jpg');
+}
+
+.container .row .col-md-6 {
+  padding: 100px 30px 50px 50px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 100vh;
+}
+
+.row {
+  padding: 30px;
+  background-color: #cccccc;
+}
+
+.card {
+  width: 33%;
+  padding: 10px;
+  float: left;
+}
+
+.img {
+  float: left;
+}
+
+h3,
+#cadastro,
+#btn {
+  text-align: center;
+}
+
+footer .row {
+  margin-left: 5%;
+}
+
+footer {
+  background: rgb(246, 243, 243);
+  margin: 0;
+  padding: 20px;
+}
