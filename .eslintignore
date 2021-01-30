@@ -1,0 +1,3 @@
+./src/public/bootstrap/*.js
+./src/public/bootstrap/js/*.js
+./src/public/bootstrap/js/*.map
