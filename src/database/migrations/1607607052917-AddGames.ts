@@ -29,7 +29,7 @@ export class AddGames1607607052917 implements MigrationInterface {
       Publisher.create({ name: 'Square Enix' }), //10
       Publisher.create({ name: 'Capcom' }), //11
       Publisher.create({ name: 'Microsoft Game Studios' }), //12
-      Publisher.create({ name: 'Sony Interactive Entertainment' }), //13
+      Publisher.create({ name: 'Sony' }), //13
       Publisher.create({ name: '2k Games' }), //14
       Publisher.create({ name: 'Studio MDHR' }), //15
       Publisher.create({ name: 'Disney Interactive Studios' }), //16
