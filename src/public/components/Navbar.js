@@ -34,7 +34,7 @@ function createNavBar() {
 
   const imgUrl = document.createElement('a');
   imgUrl.className = 'navbar-brand';
-  imgUrl.href = '/users/profile';
+  imgUrl.href = '/users/update';
   imgUrl.style = 'margin-left: 20px';
 
   const img = document.createElement('img');
