@@ -1,0 +1,42 @@
+.crop-description-text {
+  -webkit-line-clamp: 4;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+}
+
+.crop-title-text {
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+}
+
+.crop-publisher-text {
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+}
+
+#games {
+  width: 90%;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.btn-group {
+  width: 100%;
+  justify-content: center;
+}
+
+#genres {
+  margin-right: 30px;
+}
+
+.card {
+  margin: 10px;
+}

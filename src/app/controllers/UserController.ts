@@ -69,11 +69,16 @@ class UserController {
     const { user } = response.locals;
     const { id_user } = request.params;
 
-    if (user.id !== parseInt(id_user)) {
+    if (!user.admin && user.id !== parseInt(id_user)) {
       return response.status(403).json({ error: 'Sem permissão' });
     }
 
-    await user.remove();
+    const userToRemove = await User.findOne({ where: { id: id_user } });
+    if (!userToRemove) {
+      return response.status(404).json({ error: 'Usuário não existe' });
+    }
+
+    await userToRemove.remove();
 
     return response.status(204).json();
   }
