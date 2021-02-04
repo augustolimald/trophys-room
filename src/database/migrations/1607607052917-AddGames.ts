@@ -54,6 +54,18 @@ export class AddGames1607607052917 implements MigrationInterface {
       Publisher.create({ name: 'NetherRealm' }), //35
       Publisher.create({ name: 'Other Ocean Interactive' }), //36
       Publisher.create({ name: 'Team Ninja' }), //37
+      Publisher.create({ name: '2K Sports' }), //38
+      Publisher.create({ name: 'Easy Day STudios' }), //39
+      Publisher.create({ name: 'Paradox Interactive' }), //40
+      Publisher.create({ name: 'Lonely Troops' }), //41
+      Publisher.create({ name: 'Frontier Developments' }), //42
+      Publisher.create({ name: 'Vr Chat Inc.' }), //43
+      Publisher.create({ name: 'U-play Online' }), //44
+      Publisher.create({ name: 'Sulake' }), //45
+      Publisher.create({ name: 'Linden Lab' }), //46
+      Publisher.create({ name: 'Greenheart Games' }), //47
+      Publisher.create({ name: 'Last day of Work' }), //48
+      Publisher.create({ name: 'LightHouse Games Studio' }), //49
     ]);
 
     const games = await Game.save([
