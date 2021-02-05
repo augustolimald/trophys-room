@@ -16,8 +16,8 @@ const entities = [];
 const migrations = [];
 
 if (['production', 'staging'].includes(process.env.NODE_ENV)) {
-  entities.push(__dirname + '/build/app/entities/*.js');
-  migrations.push(__dirname + '/build/database/migrations/*.js');
+  entities.push(__dirname + '/dist/app/entities/*.js');
+  migrations.push(__dirname + '/dist/database/migrations/*.js');
 } else {
   entities.push(__dirname + '/src/app/entities/*.ts');
   migrations.push(__dirname + '/src/database/migrations/*.ts');
