@@ -1,3 +1,4 @@
+import multer from 'multer';
 import { resolve } from 'path';
 import express, { Router } from 'express';
 
@@ -11,7 +12,7 @@ import {
   ReviewController,
   GenreController,
 } from './app/controllers';
-import Upload from './lib/Upload';
+import { options } from './lib/Upload';
 import { Authentication, Pagination } from './app/middlewares';
 
 const router = Router();
@@ -25,7 +26,7 @@ router.use('/files', express.static(resolve(__dirname, '..', 'tmp')));
  * Open Routes
  */
 router.post('/login', SessionController.store);
-router.post('/users', Upload.single('image'), UserController.store);
+router.post('/users', multer(options('users', 'image')).single('image'), UserController.store);
 
 /**
  * Authenticated Routes

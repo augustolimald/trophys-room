@@ -11,7 +11,7 @@ import {
   JoinTable,
 } from 'typeorm';
 import bcrypt from 'bcrypt';
-import Env from '../../env';
+import cloudinary from 'cloudinary';
 import { Game } from './Game';
 import { Review } from './Review';
 
@@ -62,7 +62,7 @@ export class User extends BaseEntity {
       id: this.id,
       name: this.name,
       email: this.email,
-      profile_picture: `${Env.get('URL')}/api/files/${this.profile_picture}`,
+      profile_picture: cloudinary.v2.url(this.profile_picture),
       admin: this.admin,
     };
   }

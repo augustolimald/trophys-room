@@ -1,3 +1,4 @@
+import cloudinary from 'cloudinary';
 import { Request, Response } from 'express';
 import { Not } from 'typeorm';
 import { User } from '../entities';
@@ -22,7 +23,13 @@ class UserController {
       return response.status(409).json({ error: 'Usuário já existe' });
     }
 
-    const user = User.create({ name, email, password, profile_picture: request.file.filename });
+    const user = User.create({
+      name,
+      email,
+      password,
+      profile_picture: eval('request.file.public_id'),
+    });
+
     await user.save();
 
     return response.status(200).json(user.filterFields());
@@ -76,6 +83,10 @@ class UserController {
     const userToRemove = await User.findOne({ where: { id: id_user } });
     if (!userToRemove) {
       return response.status(404).json({ error: 'Usuário não existe' });
+    }
+
+    if (userToRemove.profile_picture) {
+      await cloudinary.v2.uploader.destroy(user.profile_picture);
     }
 
     await userToRemove.remove();

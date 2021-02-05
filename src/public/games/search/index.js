@@ -18,8 +18,12 @@ function loadGames() {
       },
     },
   )
-    .then(async data => {
-      const games = await data.json();
+    .then(async response => {
+      if (response.status === 401) {
+        quit(false);
+      }
+
+      const games = await response.json();
       games.map(game => createGame(game));
     })
     .catch(err => {

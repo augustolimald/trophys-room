@@ -103,7 +103,7 @@ function handlePlayedButton(id, element) {
           throw new Error();
         }
 
-        element.value = 1;
+        element.value = 'true';
         element.innerHTML = 'Analisar';
       })
       .catch(err => {
