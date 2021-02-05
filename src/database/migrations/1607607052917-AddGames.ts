@@ -575,10 +575,180 @@ export class AddGames1607607052917 implements MigrationInterface {
       /**
        * Genre 4
        */
+      Game.create({
+        publisher: publishers[12],
+        genre: genres[4],
+        title: 'Age of Empires III',
+        description:
+          'Age of Empires III é um jogo de estratégia em tempo real desenvolvido pela Ensemble Studios e divulgado pela Microsoft. A versão de computador foi lançada em 18 de outubro de 2005 e é o terceiro título da série Age of Empires.',
+        picture: 'https://upload.wikimedia.org/wikipedia/pt/9/9b/Aoeiii-cover.jpg',
+        metacritic_score: 81,
+        release_date: new Date(2005, 9, 18),
+      }),
+
+      Game.create({
+        publisher: publishers[12],
+        genre: genres[4],
+        title: 'Age of Empires II - Edição Definitiva',
+        description:
+          'Age of Empires II é um jogo de estratégia em tempo real desenvolvido pela Ensemble Studios e divulgado pela Microsoft. A versão de computador foi lançada em 14 de novembro de 2019 e é o terceiro título da série Age of Empires.',
+        picture:
+          'https://s2.glbimg.com/oS4245iRNZxYSWc7UOcNsUAfo3w=/0x0:1200x674/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_08fbf48bc0524877943fe86e43087e7a/internal_photos/bs/2019/4/A/cHMqDtRAGhy5S40umNRA/7rtney5fy5rrkmh9q78xv-1200-80.jpg',
+        metacritic_score: 84,
+        release_date: new Date(2019, 10, 14),
+      }),
+
+      Game.create({
+        publisher: publishers[12],
+        genre: genres[4],
+        title: 'Cities Skylines',
+        description:
+          'Cities Skylines é um jogo de construção de cidade singleplayer produzido pela Colossal Order e publicado pela Paradox Interactive, lançado em 10 de março de 2015 para PC (Microsoft Windows, macOS, Linux), XBOX, PS4 e Switch. Os jogadores se engajam no planejamento urbano, controlando o zoneamento, a construção de estradas, a tributação, os serviços públicos e o transporte público da cidade.',
+        picture:
+          'https://upload.wikimedia.org/wikipedia/pt/thumb/5/58/Cities_Skylines_cover_art.jpg/250px-Cities_Skylines_cover_art.jpg',
+        metacritic_score: 85,
+        release_date: new Date(2015, 2, 10),
+      }),
+
+      Game.create({
+        publisher: publishers[3],
+        genre: genres[4],
+        title: 'Sim City',
+        description:
+          'SimCity é uma série de jogos de simulação na qual o jogador constrói e administra uma cidade. As cidades construídas possuem características semelhantes às cidades americanas em aspectos culturais e legais nos séculos XX e XXI.',
+        picture:
+          'https://media.contentapi.ea.com/content/dam/eacom/pt-br/migrated-images/2017/01/c-simcity-buildit-scbi-game-splash.jpg.adapt.crop191x100.1200w.jpg',
+        metacritic_score: 64,
+        release_date: new Date(2013, 2, 5),
+      }),
+
+      Game.create({
+        publisher: publishers[3],
+        genre: genres[4],
+        title: 'The Sims',
+        description:
+          'The Sims é uma série de jogos eletrônicos de simulação de vida real criado pelo designer de jogos Will Wright e produzida pela Maxis. O primeiro jogo da série, The Sims, foi lançado em 4 de fevereiro de 2000. Os jogos da série The Sims são, em grande parte, jogos sandbox, pois não possuem objetivos definidos',
+        picture: 'https://i.ytimg.com/vi/cOz_vn0wLAc/maxresdefault.jpg',
+        metacritic_score: 92,
+        release_date: new Date(2000, 1, 4),
+      }),
+      Game.create({
+        publisher: publishers[3],
+        genre: genres[4],
+        title: 'The Sims 4',
+        description:
+          'The Sims 4 é o quarto título da franquia de jogos eletrônicos de simulação de vida The Sims, desenvolvido pela Maxis e publicado pela Electronic Arts. The Sims 4 foi originalmente anunciado em 6 de maio de 2013, e lançado nos Estados Unidos, Brasil e Portugal em 2 de setembro de 2014, para o Microsoft Windows.',
+        picture:
+          'https://media.contentapi.ea.com/content/dam/eacom/SIMS/brand-refresh-assets/images/2019/07/ts4-featured-image-base-refresh.png.adapt.crop191x100.1200w.png',
+        metacritic_score: 70,
+        release_date: new Date(2014, 7, 2),
+      }),
+
+      Game.create({
+        publisher: publishers[41],
+        genre: genres[4],
+        title: 'Megapolis',
+        description:
+          'Megapolis é um jogo simulador de construção e gerenciamento desenvolvido pela Solial Quantum em 2012, aonde o jogador deve administrar múltiplas cidades virtuais.',
+        picture: 'https://www.socialquantum.com/images/games/megapolis/slide-0.jpg',
+        metacritic_score: 76,
+        release_date: new Date(2012, 10, 23),
+      }),
+
+      Game.create({
+        publisher: publishers[42],
+        genre: genres[4],
+        title: 'Planet Coaster',
+        description:
+          'Planet Coaster é um jogo de simulação sandbox de construção e gerenciamento de um parque de diversões, desenvolvido e publicado pela Frontier Developments para Microsoft Windows, no qual foi lançado oficialmente em novembro de 2016.',
+        picture:
+          'https://image.api.playstation.com/vulcan/ap/rnd/202007/2213/MsxJaWqum7oDl3D6357ngYqE.png',
+        metacritic_score: 84,
+        release_date: new Date(2016, 10, 17),
+      }),
+
+      Game.create({
+        publisher: publishers[42],
+        genre: genres[4],
+        title: 'Planet Zoo',
+        description:
+          'O Planet Zoo é um jogo de simulação de construção e gerenciamento desenvolvido e publicado pela Frontier Developments para Microsoft Windows . O jogo é um "sucessor espiritual" , com uma jogabilidade semelhante à variante de parque temático do estúdio, Planet Coaster. Foi lançado mundialmente em 5 de novembro de 2019.',
+        picture: 'https://cdn.cloudflare.steamstatic.com/steam/apps/703080/header.jpg?t=1607429152',
+        metacritic_score: 81,
+        release_date: new Date(2019, 10, 5),
+      }),
 
       /**
        * Genre 5
        */
+      Game.create({
+        publisher: publishers[43],
+        genre: genres[5],
+        title: 'VR Chat',
+        description:
+          'VRChat é um jogo gratuito online, de realidade virtual em plataforma criado por Graham Gaylor e Jesse Joudrey. O jogo permite que os jogadores interagam entre si como personagens 3D.',
+        picture:
+          'https://ibcdn.canaltech.com.br/UB2YTb6n00Zf9grS7C0bZ8MsK7I=/512x288/smart/i366586.png',
+        metacritic_score: 68,
+        release_date: new Date(2017, 1, 1),
+      }),
+
+      Game.create({
+        publisher: publishers[44],
+        genre: genres[5],
+        title: 'Youtubers Life',
+        description:
+          'Youtubers Life é um jogo de simulação de vida com elementos de simulação de negócios e influências dos videogames Game Dev Tycoon e The Sims. O jogador precisa gerenciar um personagem tentando construir uma carreira como uma personalidade do YouTube.',
+        picture: 'https://i.ytimg.com/vi/MRK93FKRLoQ/maxresdefault.jpg',
+        metacritic_score: 63,
+        release_date: new Date(2016, 4, 18),
+      }),
+      Game.create({
+        publisher: publishers[45],
+        genre: genres[5],
+        title: 'Habbo',
+        description:
+          'O Habbo Hotel é uma comunidade virtual na forma de hotel voltado para o público jovem com idade acima de 13 anos. Atualmente, o Habbo está distribuído em nove diferentes línguas, com 300 milhões de personagens registrados.',
+        picture:
+          'https://image.winudf.com/v2/image1/YWlyLmNvbS5zdWxha2UuaGFiYm9haXJfc2NyZWVuX3B0LUJSXzBfMTU2Njk5NTE1OV8wMDE/screen-0.jpg?fakeurl=1&type=.jpg',
+        metacritic_score: 67,
+        release_date: new Date(2006, 1, 12),
+      }),
+
+      Game.create({
+        publisher: publishers[47],
+        genre: genres[5],
+        title: 'Game Dev. Tycoon',
+        description:
+          'Game Dev Tycoon é jogo eletrônico de simulação. O jogo simula uma empresa que cria videogames. A simulação consiste em desenvolver jogos para as mais variadas plataformas de videogame e utilizando técnicas e estratégias para fazer o seu game ser cada vez mais vendido.',
+        picture:
+          'https://cdn02.nintendo-europe.com/media/images/10_share_images/games_15/nintendo_switch_download_software_1/H2x1_NSwitchDS_GameDevTycoon_image1600w.jpg',
+        metacritic_score: 68,
+        release_date: new Date(2013, 3, 28),
+      }),
+
+      Game.create({
+        publisher: publishers[6],
+        genre: genres[5],
+        title: 'Animal Crossing',
+        description:
+          'Animal Crossing é uma série de jogos eletrônicos de simulação produzida pela Nintendo. Criada por Katsuya Egushi e Hisashi Nogami. Em Animal Crossing, o personagem do jogador é um humano que vive em uma comunidade habitada por vários animais antropomórficos, realizando várias atividades como pesca, captura de insetos, jardinagem, vendas entre outros.',
+        picture:
+          'https://cdn02.nintendo-europe.com/media/images/11_square_images/games_18/nintendo_switch_5/SQ_NSwitch_AnimalCrossingNewHorizons_image380w.jpg',
+        metacritic_score: 90,
+        release_date: new Date(2020, 2, 20),
+      }),
+
+      Game.create({
+        publisher: publishers[48],
+        genre: genres[5],
+        title: 'Comedy Night',
+        description:
+          'Comedy Night é um jogo simulador de palco de Stand-up, no qual os jogadores se reunem para socializar ou praticar suas piadas. Desenvolvido pela LightHouse Games Studio e lançado para pc em 24 de Agosto de 2017',
+        picture: 'https://i.ytimg.com/vi/88vn4PAwnCw/maxresdefault.jpg',
+        metacritic_score: 68,
+        release_date: new Date(2017, 7, 24),
+      }),
 
       /**
        * Genre 6
@@ -704,6 +874,122 @@ export class AddGames1607607052917 implements MigrationInterface {
       /**
        * Genre 7
        */
+      Game.create({
+        publisher: publishers[3],
+        genre: genres[7],
+        title: 'MADDEN NFL 2003',
+        description:
+          'Madden NFL 2003 é um videogame de simulação de futebol americano baseado na NFL, desenvolvido pela EA Tiburon e Budcat Creations e publicado pela EA Sports em 12 de Agosto de 2012 para a plataforma de Playstation 2.',
+        picture: 'https://upload.wikimedia.org/wikipedia/en/7/75/Madden2003Box.jpg',
+        metacritic_score: 95,
+        release_date: new Date(2012, 7, 12),
+      }),
+
+      Game.create({
+        publisher: publishers[3],
+        genre: genres[7],
+        title: 'FIFA 21',
+        description:
+          'FIFA 21 é um videogame de simulação de esportes desenvolvido pela Electronic Arts e publicado pela mesma empresa. O jogo foi anunciado em 19 de junho de 2020.',
+        picture:
+          'https://upload.wikimedia.org/wikipedia/pt/thumb/7/76/EA_Sports_FIFA_21.jpg/250px-EA_Sports_FIFA_21.jpg',
+        metacritic_score: 74,
+        release_date: new Date(2020, 5, 19),
+      }),
+
+      Game.create({
+        publisher: publishers[3],
+        genre: genres[7],
+        title: 'NHL 21',
+        description:
+          "NHL 21 é um jogo simulação de hockey de gelo desenvolvido pela Eletronic Art's de Vancouver e publicada pela EA Sports. é o 30º jogo da série e foi anunciado para Playstation 4 e Xbox One em Outubro de 2020.",
+        picture:
+          'https://upload.wikimedia.org/wikipedia/en/thumb/1/19/NHL_21_cover_art.jpg/220px-NHL_21_cover_art.jpg',
+        metacritic_score: 81,
+        release_date: new Date(2020, 9, 13),
+      }),
+
+      Game.create({
+        publisher: publishers[38],
+        genre: genres[7],
+        title: 'NBA 2K21',
+        description:
+          'NBA 2K21 é um jogo simulador de basquete no qual foi foi desenvolvido pela Visual Concepts e publicado pela 2K Sports, baseado na associação nacional de basquete (NBA). Ele foi anunciado em 4 de setembro de 2020, para Windows, Nintendo Switch, Playstation 4, Xbox One e Stadia.',
+        picture:
+          'https://upload.wikimedia.org/wikipedia/en/a/a2/NBA_2K21_-_Damian_Lilliard_cover_art.jpg',
+        metacritic_score: 79,
+        release_date: new Date(2020, 8, 4),
+      }),
+
+      Game.create({
+        publisher: publishers[9],
+        genre: genres[7],
+        title: 'PES 2021',
+        description:
+          'PES 2021 é um jogo eletrônico de futebol desenvolvido pela PES Production e publicado pela Konami. O jogo foi lançado em 15 de Setembro de 2020, e é o 20° lançamento da série Pro Evolution Soccer, o segundo com o nome eFootball no título.',
+        picture:
+          'https://programadoresbrasil.com.br/wp-content/uploads/2020/10/mock-visual_pes2021.jpg',
+        metacritic_score: 73,
+        release_date: new Date(2020, 8, 15),
+      }),
+
+      Game.create({
+        publisher: publishers[5],
+        genre: genres[7],
+        title: "TONY HAWK'S PRO SKATER 1+2",
+        description:
+          "Tony Hawk's Pro Skater 1 + 2 é um jogo eletrônico de skate desenvolvido pela Vicarious Visions e publicado pela Activision. Foi lançado em 4 de setembro de 2020 para Microsoft Windows, PlayStation 4 e Xbox One. É um remake de Tony Hawk's Pro Skater (1999) e Tony Hawk's Pro Skater 2 (2000) e o primeiro grande título da série desde Tony Hawk's Pro Skater 5 (2015).",
+        picture:
+          'https://cdn2.unrealengine.com/egs-tonyhawksproskater12-vicariousvisions-s6-1200x1600-914784345.jpg',
+        metacritic_score: 88,
+        release_date: new Date(2020, 8, 4),
+      }),
+
+      Game.create({
+        publisher: publishers[4],
+        genre: genres[7],
+        title: 'CAPTAIN TSUBASA: RYSE OF NEW CHAMPIONS',
+        description:
+          'Captain Tsubasa: Rise of New Champions é um videogame de futebol desenvolvido pela Tamsoft e produzido pela empresa japonesa Bandai Namco Entertainment. É baseado no mangá e anime Captain Tsubasa (Super Campeões no Brasil).Foi lançado em 28 de agosto de 2020 no PlayStation 4, Nintendo Switch e Microsoft Windows.',
+        picture:
+          'https://image.api.playstation.com/vulcan/ap/rnd/202007/0208/l1JkNQ9xmY9sYRV8Dl0hwc0e.png',
+        metacritic_score: 71,
+        release_date: new Date(2020, 7, 28),
+      }),
+
+      Game.create({
+        publisher: publishers[39],
+        genre: genres[7],
+        title: 'Skater XL',
+        description:
+          'Skater XL é um jogo eletrônico simulador de skate desenvolvido e publicado pela Easy Day Studios. Seu lançamento foi em 28 de julho de 2020, para PC, PS4 e XBOX ONE.',
+        picture: 'https://steamcdn-a.akamaihd.net/steam/apps/962730/header.jpg?t=1595948838',
+        metacritic_score: 71,
+        release_date: new Date(2020, 6, 28),
+      }),
+
+      Game.create({
+        publisher: publishers[3],
+        genre: genres[7],
+        title: 'FIFA 20',
+        description:
+          'FIFA 20 é um videogame de simulação de esportes desenvolvido pela Electronic Arts e publicado pela mesma empresa. O jogo foi anunciado em 19 de junho de 2020.',
+        picture: 'https://upload.wikimedia.org/wikipedia/pt/4/46/Fifa-20-Cover.jpg',
+        metacritic_score: 79,
+        release_date: new Date(2019, 8, 24),
+      }),
+
+      Game.create({
+        publisher: publishers[18],
+        genre: genres[7],
+        title: 'MARIO & SONIC AT OLYMPIC GAMES: TOKYO 2020',
+        description:
+          'Se trata de um jogo de esportes de 2019 baseado nos Jogos Olímpicos de 2020. É o sexto jogo da série Mario & Sonic, um crossover entre as franquias Super Mario da Nintendo e Sonic the Hedgehog da Sega, e o primeiro desde a edição dos Jogos Olímpicos Rio 2016.',
+        picture:
+          'https://gamernews.com.br/wp-content/uploads/2019/09/gamernews-Mario-Sonic-at-the-Olympic-Games.jpg',
+        metacritic_score: 79,
+        release_date: new Date(2019, 11, 1),
+      }),
 
       /**
        * Genre 8

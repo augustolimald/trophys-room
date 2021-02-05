@@ -61,6 +61,7 @@ export class CreateUser1607604412662 implements MigrationInterface {
     await User.create({
       name: 'Administrador',
       email: 'admin@mail.com',
+      profile_picture: 'users/default-user.jpg',
       password: '1234',
       admin: true,
     }).save();
