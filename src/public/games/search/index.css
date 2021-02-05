@@ -33,7 +33,8 @@
   justify-content: center;
 }
 
-#genres {
+#genres,
+#publishers {
   margin-right: 30px;
 }
 

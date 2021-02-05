@@ -33,7 +33,7 @@ export default async function (
    */
   const user = await User.findOne({
     where: { id: decoded.id, token },
-    relations: ['wishlist', 'playedList'],
+    relations: ['wishlist', 'playedList', 'reviews'],
   });
 
   if (!user) {

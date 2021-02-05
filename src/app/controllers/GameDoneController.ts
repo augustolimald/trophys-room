@@ -24,7 +24,7 @@ class GameDoneController {
 
   async remove(request: Request, response: Response): Promise<Response> {
     const { user } = response.locals;
-    const { id_game } = request.body;
+    const { id_game } = request.params;
 
     const gameIndex = await user.playedList.findIndex(game => game.id === parseInt(id_game));
     if (gameIndex === -1) {

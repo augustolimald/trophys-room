@@ -17,22 +17,34 @@
 
   <div class="btn-group">
     <div id="genres" class="dropdown">
-      <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Gênero
+      <a id="dropdown-genres-text" class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Todos os Gêneros
       </a>
     
       <div id="dropdown-genres" class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-        <a class="dropdown-item" href="#" onclick="handleGenreDropdownClick(0)">-</a>
+        <a class="dropdown-item" href="#" onclick="handleGenreDropdownClick(-1, 'Todos os Gêneros')">Todos</a>
+      </div>
+    </div>
+
+    <div id="publishers" class="dropdown">
+      <a id="dropdown-publishers-text" class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Todas as Desenvolvedoras
+      </a>
+    
+      <div id="dropdown-publishers" class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+        <a class="dropdown-item" href="#" onclick="handlePublisherDropdownClick(-1, 'Todas as Desenvolvedoras')">Todas</a>
       </div>
     </div>
 
     <div class="dropdown">
-      <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Desenvolvedora
+      <a id="dropdown-relations-text" class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Todos os Jogos
       </a>
     
-      <div id="dropdown-publishers" class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-        <a class="dropdown-item" href="#" onclick="handleGenreDropdownClick(0)">-</a>
+      <div id="dropdown-relation" class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+        <a class="dropdown-item" href="#" onclick="handleRelationDropdownClick('Todos os Jogos', 'all')">Todos</a>
+        <a class="dropdown-item" href="#" onclick="handleRelationDropdownClick('Desejados', 'wishlist')">Desejados</a>
+        <a class="dropdown-item" href="#" onclick="handleRelationDropdownClick('Jogados', 'played')">Jogados</a>
       </div>
     </div>
   </div>

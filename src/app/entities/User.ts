@@ -54,7 +54,7 @@ export class User extends BaseEntity {
   })
   playedList: Game[];
 
-  @OneToMany(type => Review, review => review.game)
+  @OneToMany(type => Review, review => review.user)
   reviews: Review[];
 
   public filterFields(): any {

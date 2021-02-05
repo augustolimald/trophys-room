@@ -10,11 +10,11 @@ export class Review extends BaseEntity {
   @PrimaryColumn()
   id_user: number;
 
-  @OneToOne(type => Game, game => game.reviews)
+  @OneToOne(type => Game, game => game.reviews, { eager: true })
   @JoinColumn({ name: 'id_game' })
   game: Game;
 
-  @OneToOne(type => User, user => user.reviews)
+  @OneToOne(type => User, user => user.reviews, { eager: true })
   @JoinColumn({ name: 'id_user' })
   user: User;
 

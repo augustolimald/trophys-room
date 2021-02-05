@@ -1,22 +1,55 @@
 import { Request, Response } from 'express';
-import { FindManyOptions } from 'typeorm';
+import { FindManyOptions, In } from 'typeorm';
 import { Game, Genre, Publisher } from '../entities';
 
 class GameController {
   async index(request: Request, response: Response): Promise<Response> {
-    const { id_genre, id_publisher } = request.query;
+    const { user } = response.locals;
+    const { id_genre, id_publisher, wishlist, played } = request.query;
 
-    const options: FindManyOptions<Game> = {};
+    const options: FindManyOptions<Game> = {
+      where: {},
+      relations: ['reviews'],
+      order: { title: 'ASC' },
+    };
+
     if (id_genre) {
-      options['genre'] = { id: id_genre };
+      options.where['genre'] = { id: id_genre };
     }
 
     if (id_publisher) {
-      options['publisher'] = { id: id_publisher };
+      options.where['publisher'] = { id: id_publisher };
+    }
+
+    if (wishlist === 'true') {
+      const wishIds = user.wishlist.map(game => game.id);
+      if (wishIds.length === 0) {
+        wishIds.push(null);
+      }
+
+      options.where['id'] = In(wishIds);
+    }
+
+    if (played === 'true') {
+      const playedIds = user.playedList.map(game => game.id);
+      if (playedIds.length === 0) {
+        playedIds.push(null);
+      }
+
+      options.where['id'] = In(playedIds);
     }
 
     const games = await Game.find(options);
-    return response.status(200).json(games);
+    return response.status(200).json(
+      games.map(game => ({
+        ...game,
+        wishlist: !!user.wishlist.find(gameInTheList => game.id === gameInTheList.id),
+        played: !!user.playedList.find(gameInTheList => game.id === gameInTheList.id),
+        reviewed: !!user.reviews.find(review => game.id === review.game.id),
+        average_score:
+          game.reviews.reduce((sum, review) => sum + review.score, 0) / (game.reviews.length || 1),
+      })),
+    );
   }
 
   async store(request: Request, response: Response): Promise<Response> {

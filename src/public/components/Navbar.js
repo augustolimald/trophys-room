@@ -1,9 +1,10 @@
-function quit(page) {
-  if (!confirm('Você deseja mesmo sair?')) {
+function quit(message = true) {
+  if (message && !confirm('Você deseja mesmo sair?')) {
     return;
   }
 
   const token = window.localStorage.getItem('token');
+  window.localStorage.clear();
 
   fetch('/api/logout', {
     method: 'POST',
@@ -14,8 +15,7 @@ function quit(page) {
     },
   });
 
-  window.localStorage.clear();
-  window.location.href = '../..';
+  window.location.href = '/';
 }
 
 function createNavBar() {

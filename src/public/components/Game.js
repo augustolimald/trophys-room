@@ -6,6 +6,112 @@ function addHeartIcon(element, isWished) {
   }
 }
 
+function handleWishButton(id, element, icon) {
+  if (element.value === 'true') {
+    fetch(`/api/users/${user.id}/wish/${id}`, {
+      method: 'DELETE',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${user.token}`,
+      },
+    })
+      .then(response => {
+        if (response.status !== 204) {
+          throw new Error();
+        }
+
+        addHeartIcon(icon, element.value);
+        element.value = !element.value;
+      })
+      .catch(err => {
+        alert('Ocorreu um erro', err);
+      });
+  } else {
+    fetch(`/api/users/${user.id}/wish`, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${user.token}`,
+      },
+      body: JSON.stringify({
+        id_game: id,
+      }),
+    })
+      .then(response => {
+        if (response.status !== 200) {
+          throw new Error();
+        }
+
+        addHeartIcon(icon, !element.value);
+        element.value = !element.value;
+      })
+      .catch(err => {
+        alert('Ocorreu um erro', err);
+      });
+  }
+}
+
+function handlePlayedButton(id, element) {
+  if (element.value === 'true') {
+    const score = parseInt(prompt('Informe uma nota de 0 a 100'));
+    if (isNaN(score) || score < 0 || score > 100) {
+      alert('Você informou um valor inválido');
+      return;
+    }
+
+    const comment = prompt('Faça um comentário sobre o jogo');
+
+    fetch(`/api/games/${id}/review`, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${user.token}`,
+      },
+      body: JSON.stringify({
+        score,
+        comment,
+      }),
+    })
+      .then(response => {
+        if (response.status !== 200) {
+          throw new Error();
+        }
+
+        element.innerHTML = 'Analisado';
+        element.disabled = true;
+      })
+      .catch(err => {
+        alert('Ocorreu um erro', err);
+      });
+  } else {
+    fetch(`/api/users/${user.id}/played`, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${user.token}`,
+      },
+      body: JSON.stringify({
+        id_game: id,
+      }),
+    })
+      .then(response => {
+        if (response.status !== 200) {
+          throw new Error();
+        }
+
+        element.value = 1;
+        element.innerHTML = 'Analisar';
+      })
+      .catch(err => {
+        alert('Ocorreu um erro', err);
+      });
+  }
+}
+
 function createGame(game) {
   const div = document.createElement('div');
   div.className = 'col-sm-3';
@@ -13,7 +119,7 @@ function createGame(game) {
   const card = document.createElement('div');
   card.id = `game:${game.id}`;
   card.className = 'card';
-  card.style = 'width: 25rem;';
+  card.style = 'width: 20rem;';
 
   const img = document.createElement('img');
   img.className = 'card-img-top';
@@ -56,7 +162,7 @@ function createGame(game) {
 
   const average_score = document.createElement('li');
   average_score.className = 'list-group-item';
-  average_score.innerHTML = `<strong>Nota Trophy's Room: </strong> ${game.metacritic_score}`;
+  average_score.innerHTML = `<strong>Nota Trophy's Room: </strong> ${game.average_score}`;
   parameters.appendChild(average_score);
 
   const release_date = document.createElement('li');
@@ -72,17 +178,18 @@ function createGame(game) {
 
   const btnPlayed = document.createElement('button');
   btnPlayed.type = 'button';
+  btnPlayed.value = game.played;
+  btnPlayed.innerHTML = game.played ? (game.reviewed ? 'Analisado' : 'Analisar') : 'Joguei';
+  btnPlayed.disabled = game.reviewed;
   btnPlayed.className = 'btn btn-primary btn-sm mr-1 mb-2';
-
-  const btnPlayedText = document.createElement('span');
-  btnPlayedText.innerHTML = 'Joguei';
-  btnPlayed.appendChild(btnPlayedText);
+  btnPlayed.onclick = () => handlePlayedButton(game.id, btnPlayed);
 
   body.appendChild(btnPlayed);
 
   const btnWish = document.createElement('button');
   btnWish.title = 'Lista de Desejos';
   btnWish.type = 'button';
+  btnWish.value = game.wishlist;
   btnWish.className = 'btn btn-danger btn-sm px-3 mb-2 material-tooltip-main';
   btnWish.setAttribute('data-toggle', 'tooltip');
   btnWish.setAttribute('data-placement', 'top');
@@ -94,8 +201,10 @@ function createGame(game) {
   const iconWish = document.createElement('img');
   iconWish.setAttribute('width', 16);
   iconWish.setAttribute('height', 16);
-  addHeartIcon(iconWish, true);
+  addHeartIcon(iconWish, !game.wishlist);
   btnWish.appendChild(iconWish);
+
+  btnWish.onclick = () => handleWishButton(game.id, btnWish, iconWish);
 
   body.appendChild(btnWish);
 
