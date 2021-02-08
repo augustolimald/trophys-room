@@ -50,7 +50,7 @@ async function handleAdminButton(userToUpdate, adminButton, removeButton) {
   if (userLoggedIn.id === userToUpdate.id) {
     userLoggedIn.admin = false;
     window.localStorage.removeItem('user');
-    window.localStorage.setItem('user', JSON.stringify(user));
+    window.localStorage.setItem('user', JSON.stringify(userLoggedIn));
     window.location.href = '/games/search';
   }
 
