@@ -109,35 +109,6 @@ paths:
         "409":
           description: Entidade já cadastrada
   /users/{id_user}:
-    get:
-      tags:
-      - Usuários
-      summary: Lista um usuário do sistema
-      description: Somente administradores ou o usuário dono do id podem fazer isso
-      operationId: listUser
-      parameters:
-      - name: id_user
-        in: path
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: integer
-      responses:
-        "200":
-          description: Lista os usuários
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/User'
-        "401":
-          description: Informe um token válido
-        "403":
-          description: Usuário não possui permissão para isso
-        "404":
-          description: Entidade não encontrada
-      security:
-      - bearerAuth: []
     put:
       tags:
       - Usuários
@@ -435,36 +406,6 @@ paths:
       security:
       - bearerAuth: []
   /users/{id_user}/wish:
-    get:
-      tags:
-      - Lista de Desejos
-      summary: Lista jogos da lista de desejos
-      operationId: listWishlist
-      parameters:
-      - name: id_user
-        in: path
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: integer
-      responses:
-        "200":
-          description: Lista jogos
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Game'
-        "401":
-          description: Informe um token válido
-        "403":
-          description: Usuário não possui permissão para isso
-        "404":
-          description: Entidade não encontrada
-      security:
-      - bearerAuth: []
     post:
       tags:
       - Lista de Desejos
@@ -527,36 +468,6 @@ paths:
       security:
       - bearerAuth: []
   /users/{id_user}/played:
-    get:
-      tags:
-      - Jogados
-      summary: Lista os jogos jogados
-      operationId: listDone
-      parameters:
-      - name: id_user
-        in: path
-        required: true
-        style: simple
-        explode: false
-        schema:
-          type: integer
-      responses:
-        "200":
-          description: Lista os jogos
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Game'
-        "401":
-          description: Informe um token válido
-        "403":
-          description: Usuário não possui permissão para isso
-        "404":
-          description: Entidade não encontrada
-      security:
-      - bearerAuth: []
     post:
       tags:
       - Jogados
@@ -806,7 +717,7 @@ components:
         games:
           type: array
           items:
-            $ref: '#/components/schemas/User'
+            $ref: '#/components/schemas/Game'
         current_page:
           type: integer
           example: 1
