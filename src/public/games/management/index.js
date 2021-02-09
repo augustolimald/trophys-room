@@ -23,42 +23,7 @@ async function handleDeleteButton(game, row) {
 }
 
 async function handleUpdateButton(gameToUpdate) {
-  if (
-    userLoggedIn.id === userToUpdate.id &&
-    !confirm('Tem certeza? Você deixará de ser um administrador!')
-  ) {
-    return;
-  }
-
-  const request = await fetch(`/api/users/${userToUpdate.id}/admin`, {
-    method: 'PATCH',
-    body: JSON.stringify({
-      admin: !userToUpdate.admin,
-    }),
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${userLoggedIn.token}`,
-    },
-  });
-
-  if (request.status !== 200) {
-    alert('Ocorreu um erro');
-    return;
-  }
-
-  if (userLoggedIn.id === userToUpdate.id) {
-    user.admin = false;
-    window.localStorage.removeItem('user');
-    window.localStorage.setItem('user', JSON.stringify(user));
-    window.location.href = '/games/search';
-  }
-
-  userToUpdate.admin = !userToUpdate.admin;
-
-  removeButton.disabled = userToUpdate.admin;
-  adminButton.className = userToUpdate.admin ? 'admin btn btn-danger' : 'admin btn btn-success';
-  adminButton.innerHTML = userToUpdate.admin ? 'Remover Acesso' : 'Tornar Admin';
+  window.location.href = `/games/update?id_game=${gameToUpdate.id}`;
 }
 
 fetch('/api/games', {

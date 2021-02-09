@@ -1,0 +1,14 @@
+#dropdown-publishers-text,
+#dropdown-genres-text,
+input {
+  width: 350px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 100vh;
+}
