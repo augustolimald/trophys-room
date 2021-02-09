@@ -1,8 +1,9 @@
 import { Request, Response } from 'express';
-import { generateToken } from '../../lib/Token';
 import { User } from '../entities';
+import Controller from './Controller';
+import { generateToken } from '../../lib/Token';
 
-class SessionController {
+class SessionController implements Controller {
   async store(request: Request, response: Response): Promise<Response> {
     const { email, password } = request.body;
 

@@ -1,8 +1,9 @@
 import { Request, Response } from 'express';
 import { FindManyOptions, In } from 'typeorm';
 import { Game, Genre, Publisher } from '../entities';
+import Controller from './Controller';
 
-class GameController {
+class GameController implements Controller {
   async index(request: Request, response: Response): Promise<Response> {
     const { user } = response.locals;
     const { id_genre, id_publisher, wishlist, played } = request.query;
@@ -46,8 +47,7 @@ class GameController {
         wishlist: !!user.wishlist.find(gameInTheList => game.id === gameInTheList.id),
         played: !!user.playedList.find(gameInTheList => game.id === gameInTheList.id),
         reviewed: !!user.reviews.find(review => game.id === review.game.id),
-        average_score:
-          game.reviews.reduce((sum, review) => sum + review.score, 0) / (game.reviews.length || 1),
+        average_score: game.getAverageScore(),
       })),
     );
   }
@@ -90,16 +90,12 @@ class GameController {
   async show(request: Request, response: Response): Promise<Response> {
     const { id_game } = request.params;
 
-    const game = await Game.findOne({ where: { id: id_game }, relations: ['reviews'] });
+    const game = await Game.findOne({ where: { id: id_game } });
     if (!game) {
       return response.status(404).json({ error: 'Jogo não existe' });
     }
 
-    return response.status(200).json({
-      ...game,
-      average_score:
-        game.reviews.reduce((sum, review) => sum + review.score, 0) / (game.reviews.length || 1),
-    });
+    return response.status(200).json(game);
   }
 
   async update(request: Request, response: Response): Promise<Response> {

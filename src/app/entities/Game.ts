@@ -41,4 +41,10 @@ export class Game extends BaseEntity {
 
   @Column()
   release_date: Date;
+
+  getAverageScore(): number {
+    return this.reviews && this.reviews.length > 0
+      ? this.reviews.reduce((sum, review) => sum + review.score, 0) / this.reviews.length
+      : 0;
+  }
 }

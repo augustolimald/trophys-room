@@ -1,9 +1,9 @@
-import Env from './env';
+import 'dotenv/config';
 import app from './app';
 import database from './database';
 
-const port = Env.get('PORT', 8080);
-const url = Env.get('URL', `http://localhost:${port}`);
+const port = process.env.PORT || 8080;
+const url = process.env.URL || `http://localhost:${port}`;
 
 database
   .connect()

@@ -1,12 +1,8 @@
 import { Request, Response } from 'express';
 import { Game } from '../entities';
+import Controller from './Controller';
 
-class WishlistController {
-  async index(request: Request, response: Response): Promise<Response> {
-    const { user } = response.locals;
-    return response.status(200).json(user.wishlist);
-  }
-
+class WishlistController implements Controller {
   async store(request: Request, response: Response): Promise<Response> {
     const { user } = response.locals;
     const { id_game } = request.body;

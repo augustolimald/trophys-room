@@ -1,3 +1,4 @@
+import Controller from './Controller';
 import GameController from './GameController';
 import UserController from './UserController';
 import GenreController from './GenreController';
@@ -8,6 +9,7 @@ import WishlistController from './WishlistController';
 import PublisherController from './PublisherController';
 
 export {
+  Controller,
   GameController,
   UserController,
   GenreController,

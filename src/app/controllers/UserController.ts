@@ -2,8 +2,9 @@ import cloudinary from 'cloudinary';
 import { Request, Response } from 'express';
 import { Not } from 'typeorm';
 import { User } from '../entities';
+import Controller from './Controller';
 
-class UserController {
+class UserController implements Controller {
   async index(request: Request, response: Response): Promise<Response> {
     const { user } = response.locals;
 
@@ -33,22 +34,6 @@ class UserController {
     await user.save();
 
     return response.status(200).json(user.filterFields());
-  }
-
-  async show(request: Request, response: Response): Promise<Response> {
-    const { user } = response.locals;
-    const { id_user } = request.params;
-
-    if (!user.admin && user.id !== parseInt(id_user)) {
-      return response.status(403).json({ error: 'Sem permissão' });
-    }
-
-    const userToFind = await User.findOne({ where: { id: id_user } });
-    if (!userToFind) {
-      return response.status(404).json({ error: 'Usuário não existe' });
-    }
-
-    return response.status(200).json(userToFind.filterFields());
   }
 
   async update(request: Request, response: Response): Promise<Response> {

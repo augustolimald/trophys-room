@@ -1,7 +1,8 @@
 import { Request, Response } from 'express';
 import { Game, Review } from '../entities';
+import Controller from './Controller';
 
-class ReviewController {
+class ReviewController implements Controller {
   async store(request: Request, response: Response): Promise<Response> {
     const { user } = response.locals;
     const { id_game } = request.params;
