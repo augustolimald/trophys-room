@@ -26,6 +26,12 @@ async function handleUpdateButton(gameToUpdate) {
   window.location.href = `/games/update?id_game=${gameToUpdate.id}`;
 }
 
+function handleAddButton() {
+  window.location.href = '/games/new';
+}
+
+document.getElementById('btnAdd').onclick = () => handleAddButton();
+
 fetch('/api/games', {
   method: 'GET',
   headers: {

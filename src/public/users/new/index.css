@@ -7,7 +7,7 @@ body {
 }
 
 .container .row .col-md-6 {
-  padding: 100px 30px 50px 50px;
+  padding: 100px 30px 50px 20px;
 }
 
 .container {
@@ -20,7 +20,7 @@ body {
 }
 
 .row {
-  padding: 30px;
+  padding: 30px 10px 30px 10px;
   background-color: #cccccc;
 }
 
@@ -35,7 +35,6 @@ body {
 }
 
 h3,
-#cadastro,
 #btn {
   text-align: center;
 }
@@ -48,4 +47,9 @@ footer {
   background: rgb(246, 243, 243);
   margin: 0;
   padding: 20px;
+}
+
+.form-group,
+input {
+  width: 350px;
 }

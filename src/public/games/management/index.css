@@ -2,8 +2,16 @@
   width: 700px;
 }
 
-.table {
+.table,
+.btn-group {
   width: 90%;
   margin-left: 5%;
   margin-right: 5%;
+}
+
+.btn-group {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  display: block;
+  text-align: right;
 }

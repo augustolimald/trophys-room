@@ -1,12 +1,13 @@
-container .row .col-md-6 {
-  padding: 100px 30px 50px 50px;
+.container {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  text-align: center;
 }
 
-.container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  min-height: 100vh;
+.form-group,
+input {
+  width: 350px;
 }

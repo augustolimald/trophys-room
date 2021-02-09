@@ -1,4 +1,14 @@
 async function cadastrar() {
+  if (document.getElementById('inputFile').files.length === 0) {
+    alert('Você precisa informar a imagem de perfil');
+    return;
+  }
+
+  if (!document.getElementById('inputName').value || !document.getElementById('inputEmail').value) {
+    alert('Você precisa informar a imagem de perfil');
+    return;
+  }
+
   const formData = new FormData();
   formData.append('name', document.getElementById('inputName').value);
   formData.append('email', document.getElementById('inputEmail').value);

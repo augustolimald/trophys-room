@@ -115,20 +115,24 @@ fetch(`/api/games/${id_game}`, {
     'Content-Type': 'application/json',
     Authorization: `Bearer ${user.token}`,
   },
-}).then(async response => {
-  if (response.status !== 200) {
-    throw new Error();
-  }
+})
+  .then(async response => {
+    if (response.status !== 200) {
+      throw new Error();
+    }
 
-  const data = await response.json();
-  document.getElementById('inputTitle').value = data.title;
-  document.getElementById('inputDescription').value = data.description;
-  document.getElementById('inputURLPicture').value = data.picture;
-  document.getElementById('inputMetacriticScore').value = data.metacritic_score;
-  const date = new Date(data.release_date);
-  const month = date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1;
-  const day = date.getDay() < 10 ? '0' + date.getDay() : date.getDay();
-  document.getElementById('inputReleaseDate').value = `${date.getFullYear()}-${month}-${day}`;
-  handleGenreDropdownClick(data.genre.id, data.genre.name);
-  handlePublisherDropdownClick(data.publisher.id, data.publisher.name);
-});
+    const data = await response.json();
+    document.getElementById('inputTitle').value = data.title;
+    document.getElementById('inputDescription').value = data.description;
+    document.getElementById('inputURLPicture').value = data.picture;
+    document.getElementById('inputMetacriticScore').value = data.metacritic_score;
+    const date = new Date(data.release_date);
+    const month = date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1;
+    const day = date.getDay() < 10 ? '0' + date.getDay() : date.getDay();
+    document.getElementById('inputReleaseDate').value = `${date.getFullYear()}-${month}-${day}`;
+    handleGenreDropdownClick(data.genre.id, data.genre.name);
+    handlePublisherDropdownClick(data.publisher.id, data.publisher.name);
+  })
+  .catch(() => {
+    window.location.href = '/games/management';
+  });
