@@ -5,7 +5,7 @@ async function cadastrar() {
   }
 
   if (!document.getElementById('inputName').value || !document.getElementById('inputEmail').value) {
-    alert('Você precisa informar a imagem de perfil');
+    alert('Você precisa informar o nome e email');
     return;
   }
 
