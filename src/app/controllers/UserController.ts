@@ -28,8 +28,10 @@ class UserController implements Controller {
       name,
       email,
       password,
-      profile_picture: eval('request.file.public_id'),
+      profile_picture: eval(`request.file ? request.file.public_id : 'users/default-user.jpg'`),
     });
+
+    console.log('user =======>', user);
 
     await user.save();
 

@@ -45,6 +45,7 @@ function createNavBar() {
   imgUrl.appendChild(img);
 
   const name = document.createElement('span');
+  name.id = 'userName';
   name.innerHTML = `&nbsp; ${user.name}`;
   imgUrl.appendChild(name);
 
@@ -76,6 +77,7 @@ function createNavBar() {
   quitUrl.className = 'nav-link';
   quitUrl.href = '#';
   quitUrl.innerHTML = 'Sair';
+  quitUrl.id = 'quitButton';
   quitUrl.setAttribute('onclick', 'quit(); return false;');
   quitOption.appendChild(quitUrl);
   options.appendChild(quitOption);

@@ -28,6 +28,7 @@ function loadGames() {
     })
     .catch(err => {
       alert('Ocorreu um erro', err.message);
+      window.location.href = '/';
     });
 }
 

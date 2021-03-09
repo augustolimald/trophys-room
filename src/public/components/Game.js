@@ -181,7 +181,7 @@ function createGame(game) {
   btnPlayed.value = game.played;
   btnPlayed.innerHTML = game.played ? (game.reviewed ? 'Analisado' : 'Analisar') : 'Joguei';
   btnPlayed.disabled = game.reviewed;
-  btnPlayed.className = 'btn btn-primary btn-sm mr-1 mb-2';
+  btnPlayed.className = 'btn btn-primary btn-sm mr-1 mb-2 btnPlay';
   btnPlayed.onclick = () => handlePlayedButton(game.id, btnPlayed);
 
   body.appendChild(btnPlayed);
@@ -190,7 +190,7 @@ function createGame(game) {
   btnWish.title = 'Lista de Desejos';
   btnWish.type = 'button';
   btnWish.value = game.wishlist;
-  btnWish.className = 'btn btn-danger btn-sm px-3 mb-2 material-tooltip-main';
+  btnWish.className = 'btn btn-danger btn-sm px-3 mb-2 material-tooltip-main btnWish';
   btnWish.setAttribute('data-toggle', 'tooltip');
   btnWish.setAttribute('data-placement', 'top');
 
