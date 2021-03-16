@@ -13,7 +13,7 @@ class UserController implements Controller {
     }
 
     const users = await User.find();
-    return response.status(200).json(users.map(user => user.filterFields()));
+    return response.status(200).json(users.map(u => u.filterFields()));
   }
 
   async store(request: Request, response: Response): Promise<Response> {
@@ -30,8 +30,6 @@ class UserController implements Controller {
       password,
       profile_picture: eval(`request.file ? request.file.public_id : 'users/default-user.jpg'`),
     });
-
-    console.log('user =======>', user);
 
     await user.save();
 

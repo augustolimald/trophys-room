@@ -73,7 +73,7 @@ class GameController implements Controller {
       return response.status(404).json({ error: 'Desenvolvedora não existe' });
     }
 
-    const game = await Game.create({
+    const game = Game.create({
       genre,
       publisher,
       title,
@@ -82,6 +82,7 @@ class GameController implements Controller {
       release_date: new Date(release_date),
       metacritic_score,
     });
+
     await game.save();
 
     return response.status(200).json(game);

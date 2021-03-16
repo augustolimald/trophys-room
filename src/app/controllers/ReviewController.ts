@@ -13,7 +13,7 @@ class ReviewController implements Controller {
       return response.status(404).json({ error: 'Jogo não foi encontrado' });
     }
 
-    const gameIndex = user.playedList.findIndex(game => game.id === parseInt(id_game));
+    const gameIndex = user.playedList.findIndex(g => g.id === parseInt(id_game));
     if (gameIndex === -1) {
       return response.status(404).json({ error: 'Jogo não foi jogado' });
     }

@@ -67,7 +67,7 @@ export class AddGames1607607052917 implements MigrationInterface {
       Publisher.create({ name: 'LightHouse Games Studio' }), //48
     ]);
 
-    const games = await Game.save([
+    await Game.save([
       /**
        * Genre 0
        */

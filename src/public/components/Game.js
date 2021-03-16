@@ -179,7 +179,13 @@ function createGame(game) {
   const btnPlayed = document.createElement('button');
   btnPlayed.type = 'button';
   btnPlayed.value = game.played;
-  btnPlayed.innerHTML = game.played ? (game.reviewed ? 'Analisado' : 'Analisar') : 'Joguei';
+
+  if (game.played) {
+    btnPlayed.innerHTML = game.reviewed ? 'Analisado' : 'Analisar';
+  } else {
+    btnPlayed.innerHTML = 'Joguei';
+  }
+
   btnPlayed.disabled = game.reviewed;
   btnPlayed.className = 'btn btn-primary btn-sm mr-1 mb-2 btnPlay';
   btnPlayed.onclick = () => handlePlayedButton(game.id, btnPlayed);
